@@ -1,0 +1,30 @@
+version: '3'
+tasks:
+  compile:
+    dir: server
+    cmds:
+      - sbt compile
+    silent: true
+  run:
+    dir: server
+    cmds:
+      - sbt run
+    silent: true
+  test:
+    dir: server
+    cmds:
+      - sbt test
+    silent: true
+  populate:
+    dir: server
+    cmds:
+      - hurl scripts/add-items.hurl
+      - hurl scripts/add-coupon.hurl
+    silent: true
+  fetch:
+    dir: server
+    cmds:
+      - hurl scripts/fetch.hurl
+    silent: true
+  demo:
+    deps: [populate, fetch]
